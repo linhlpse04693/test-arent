@@ -3,10 +3,7 @@ import { UserModule } from '../user/user.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
-import { JsonWebTokenStrategy } from './strategies/jwt.strategy';
-import config from '../config/config';
-import * as process from 'process';
-import {ConfigModule, ConfigService} from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -15,12 +12,12 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        return configService.get('jwt')
+        return configService.get('jwt');
       },
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JsonWebTokenStrategy],
+  providers: [AuthService],
   controllers: [AuthController],
 })
 export class AuthModule {}

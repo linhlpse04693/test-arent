@@ -1,5 +1,5 @@
-import { CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from 'typeorm';
-import { Exclude, Expose } from '@nestjs/class-transformer';
+import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Expose } from '@nestjs/class-transformer';
 
 export class BaseEntity {
   @Expose()
@@ -9,8 +9,4 @@ export class BaseEntity {
   @Expose()
   @UpdateDateColumn({ type: 'timestamptz' })
   updatedAt: Date;
-
-  @Exclude()
-  @DeleteDateColumn({ type: 'timestamptz' })
-  deletedAt?: Date;
 }

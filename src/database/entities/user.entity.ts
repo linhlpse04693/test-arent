@@ -1,5 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { BaseEntity } from './base.entity';
+import { DiaryEntity } from './diary.entity';
+import { Exclude } from '@nestjs/class-transformer';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
@@ -12,6 +20,11 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
+  @Exclude()
   @Column({ type: 'varchar', nullable: false })
   password: string;
+
+  @OneToMany(() => DiaryEntity, (diary) => diary.user)
+  @JoinColumn({ name: 'id', referencedColumnName: 'userId' })
+  diaries: DiaryEntity[];
 }
