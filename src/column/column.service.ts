@@ -23,11 +23,8 @@ export class ColumnService {
     return this.columnRepository.save(payload);
   }
 
-  async getList(userId: string, filter: GetMealDto): Promise<ColumnEntity[]> {
+  async getList(filter: GetMealDto): Promise<ColumnEntity[]> {
     return await this.columnRepository.find({
-      where: {
-        userId,
-      },
       order: {
         createdAt: 'DESC',
       },

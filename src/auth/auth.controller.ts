@@ -13,7 +13,13 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UserEntity } from '../database/entities/user.entity';
 import { LoginDto } from './dtos/login.dto';
 import { SkipJwtAuth } from '../decorators/skip-jwt-auth.decorator';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Auth')
+@ApiBearerAuth()
+@ApiResponse({ status: 201, description: 'Successful.' })
+@ApiResponse({ status: 400, description: 'Bad Request.' })
+@ApiResponse({ status: 404, description: 'Not Found.' })
 @Controller('auth')
 export class AuthController {
   constructor(

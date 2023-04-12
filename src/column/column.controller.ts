@@ -28,7 +28,7 @@ import { ColumnEntity } from '../database/entities/column.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateColumnDto } from './dtos/create-column.dto';
 import { ColumnAbility } from '../casl/decorators/column-ability.decorator';
-import {SkipJwtAuth} from "../decorators/skip-jwt-auth.decorator";
+import { SkipJwtAuth } from '../decorators/skip-jwt-auth.decorator';
 
 export const storage = {
   storage: diskStorage({
@@ -56,7 +56,7 @@ export class ColumnController {
   ): Promise<ColumnEntity[]> {
     ability.can(Action.ReadList, ColumnEntity);
 
-    return await this.columnService.getList(user.id, filter);
+    return await this.columnService.getList(filter);
   }
 
   @Post()

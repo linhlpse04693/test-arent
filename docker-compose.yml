@@ -13,20 +13,6 @@ services:
     env_file:
       - docker.env
 
-  nestjs-api:
-    container_name: api
-    build:
-      context: '.'
-      dockerfile: .docker/node/Dockerfile
-    volumes:
-      - .:/usr/src/app
-    env_file:
-      - .env
-    ports:
-      - "3000:3000"
-    networks:
-      - postgres
-
 networks:
   postgres:
     driver: bridge
